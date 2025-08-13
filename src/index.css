@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Inter', sans-serif;
+  color: white;
+  background-color: #000000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  font-size: 16px;
+
+}
+body
+{
+    scroll-behavior: smooth;
+}
+
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Hero section */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* tam ekran yüksekliği */
+  overflow: hidden;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 16px; /* py-20 px-4 */
+}
+
+/* Video arka plan sadece hero içinde */
+.hero video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -10;
+  pointer-events: none;
+  opacity: 1; /* opacity kesinlikle kaldırıldı */
+}
+
+/* İçerik kutusu */
+.content {
+  position: relative;
+  z-index: 10;
+  max-width: 70rem;
+  width: 100%;
+  padding: 2.5rem;
+  border-radius: 12px;
+  text-align: center;
+  background-color: transparent !important; /* tamamen şeffaf */
+}
