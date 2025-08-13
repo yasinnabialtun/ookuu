@@ -39,9 +39,10 @@ const App: React.FC = () => {
                 <>
                   <Hero />
                   <ParallaxVideo />
+                       <BentoGrid />
                   <FeatureCardsSection />
                   <EducationSection />
-                  <BentoGrid />
+             
                   <AcademicThesis />
                   <AppointmentSection />
                   <FAQSection />
