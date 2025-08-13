@@ -89,7 +89,7 @@ const ParallaxVideo: React.FC = () => {
   return (
     <section
       ref={containerRef}
-      className="relative overflow-hidden mx-auto max-w-[1300px] rounded-[33px]"
+      className="relative overflow-hidden mx-auto max-w-[1400px] rounded-[33px]"
       style={{
         height: "calc(100vw * 9 / 16)", // 16:9 oran
         maxHeight: "562.5px",
