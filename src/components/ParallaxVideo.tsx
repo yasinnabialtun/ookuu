@@ -16,6 +16,7 @@ const ParallaxVideo: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const ticking = useRef(false);
 
+  // YouTube Player setup
   useEffect(() => {
     if (!window.YT) {
       const tag = document.createElement("script");
@@ -58,6 +59,7 @@ const ParallaxVideo: React.FC = () => {
     };
   }, []);
 
+  // Scroll / Parallax effect
   useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current) return;
@@ -69,8 +71,14 @@ const ParallaxVideo: React.FC = () => {
           const offset = rect.top;
 
           if (offset < windowHeight && offset > -rect.height) {
-            const parallax = offset * 0.03;
-            containerRef.current!.style.transform = `translateY(${parallax}px)`;
+            const factor = window.innerWidth < 768 ? 0.01 : 0.03;
+            const parallax = offset * factor;
+
+            const videoDiv = containerRef.current!.querySelector('#youtube-player') as HTMLElement;
+            if (videoDiv) {
+              const scale = window.innerWidth < 768 ? 1.1 : 1.3;
+              videoDiv.style.transform = `scale(${scale}) translateY(-50px) translateY(${parallax}px)`;
+            }
           }
           ticking.current = false;
         });
@@ -82,20 +90,17 @@ const ParallaxVideo: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const marginTop = "-120px";
-  const translateY = "-50px";
-
   return (
     <section
       ref={containerRef}
-      className="relative overflow-hidden w-[1200px] mx-auto rounded-[33px]"
+      className="relative overflow-hidden w-full max-w-[1200px] mx-auto rounded-[33px]"
       style={{
-        height: "calc(1200px * 9 / 16)", // 16:9 oran, 1200px genişlik
-        marginTop,
+        height: "calc(100vw * 9 / 16)", // responsive 16:9 oran
+        maxHeight: "675px", // desktop limit
+        marginTop: "-120px",
         backgroundColor: "black",
         position: "relative",
         zIndex: 1,
-        overflow: "hidden",
         transition: "transform 0.1s ease-out",
       }}
     >
@@ -103,7 +108,7 @@ const ParallaxVideo: React.FC = () => {
         id="youtube-player"
         className="absolute top-0 left-0 w-full h-full rounded-[33px]"
         style={{
-          transform: `scale(1.3) translateY(${translateY})`,
+          transform: `scale(1.1) translateY(-50px)`,
           pointerEvents: "none",
           borderRadius: 33,
         }}

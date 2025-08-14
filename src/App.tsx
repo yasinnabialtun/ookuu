@@ -13,10 +13,9 @@ import AppointmentSection from "./components/AppointmentSection";
 import FAQSection from "./components/FAQSection";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Footer from "./components/Footer";
-import SectionDivider from "./components/SectionDivider";
 
 // Yeni sayfalar
-import YaraticiDijitalTasarim from "./Pages/YaraticiDijitalTasarim";
+import YaraticiDijitalTasarim from './Pages/YaraticiDijitalTasarim';
 import YapayZekaTeknolojileri from "./Pages/YapayZekaTeknolojileri";
 import DijitalPazarlamaStratejileri from "./Pages/DijitalPazarlamaStratejileri";
 
@@ -35,18 +34,19 @@ const App: React.FC = () => {
             <Route
               path="/"
               element={
-                <>
+                <div className="flex flex-col">
+                  {/* Hero sayfanın en üstünde */}
                   <Hero />
-                  <ParallaxVideo />
-                  <SectionDivider gradient /> {/* Bölüm ayırıcı */}
-                  <EducationSection />
-                  <BentoGrid />
-                  <SectionDivider /> {/* İsteğe bağlı başka bir ayırıcı */}
-                  <FeatureCardsSection />
-                  <AcademicThesis />
-                  <AppointmentSection />
-                  <FAQSection />
-                </>
+
+                  {/* Diğer içerikler responsive margin ile */}
+                  <div className="mt-6 md:mt-12 lg:mt-20"><ParallaxVideo /></div>
+                  <div className="mt-6 md:mt-12 lg:mt-20"><EducationSection /></div>
+                  <div className="mt-6 md:mt-12 lg:mt-20"><BentoGrid /></div>
+                  <div className="mt-6 md:mt-12 lg:mt-20"><FeatureCardsSection /></div>
+                  <div className="mt-6 md:mt-12 lg:mt-20"><AcademicThesis /></div>
+                  <div className="mt-6 md:mt-12 lg:mt-20"><AppointmentSection /></div>
+                  <div className="mt-6 md:mt-12 lg:mt-20"><FAQSection /></div>
+                </div>
               }
             />
             {/* Yeni sayfalar */}
