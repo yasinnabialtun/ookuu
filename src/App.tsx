@@ -13,13 +13,12 @@ import AppointmentSection from "./components/AppointmentSection";
 import FAQSection from "./components/FAQSection";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Footer from "./components/Footer";
+import SectionDivider from "./components/SectionDivider";
 
 // Yeni sayfalar
-// Sayfalar
-import YaraticiDijitalTasarim from './Pages/YaraticiDijitalTasarim';
+import YaraticiDijitalTasarim from "./Pages/YaraticiDijitalTasarim";
 import YapayZekaTeknolojileri from "./Pages/YapayZekaTeknolojileri";
 import DijitalPazarlamaStratejileri from "./Pages/DijitalPazarlamaStratejileri";
-
 
 const App: React.FC = () => {
   const handleContactClick = () => {
@@ -39,11 +38,11 @@ const App: React.FC = () => {
                 <>
                   <Hero />
                   <ParallaxVideo />
-                   <EducationSection />
-                       <BentoGrid />
+                  <SectionDivider gradient /> {/* Bölüm ayırıcı */}
+                  <EducationSection />
+                  <BentoGrid />
+                  <SectionDivider /> {/* İsteğe bağlı başka bir ayırıcı */}
                   <FeatureCardsSection />
-                 
-             
                   <AcademicThesis />
                   <AppointmentSection />
                   <FAQSection />
