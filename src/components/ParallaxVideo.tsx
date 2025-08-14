@@ -69,7 +69,7 @@ const ParallaxVideo: React.FC = () => {
           const offset = rect.top;
 
           if (offset < windowHeight && offset > -rect.height) {
-            const parallax = offset * 0.03; // çok hafif sabit parallax
+            const parallax = offset * 0.03;
             containerRef.current!.style.transform = `translateY(${parallax}px)`;
           }
           ticking.current = false;
@@ -82,23 +82,20 @@ const ParallaxVideo: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Sabit yukarı taşıma değerleri (tüm cihazlar için aynı)
   const marginTop = "-120px";
   const translateY = "-50px";
 
   return (
     <section
       ref={containerRef}
-      className="relative overflow-hidden mx-auto max-w-[1400px] rounded-[33px]"
+      className="relative overflow-hidden w-[1200px] mx-auto rounded-[33px]"
       style={{
-        height: "calc(100vw * 9 / 16)", // 16:9 oran
-        maxHeight: "562.5px",
+        height: "calc(1200px * 9 / 16)", // 16:9 oran, 1200px genişlik
         marginTop,
         backgroundColor: "black",
         position: "relative",
         zIndex: 1,
         overflow: "hidden",
-        width: "100%",
         transition: "transform 0.1s ease-out",
       }}
     >
@@ -106,7 +103,7 @@ const ParallaxVideo: React.FC = () => {
         id="youtube-player"
         className="absolute top-0 left-0 w-full h-full rounded-[33px]"
         style={{
-          transform: `scale(1.1) translateY(${translateY})`,
+          transform: `scale(1.3) translateY(${translateY})`,
           pointerEvents: "none",
           borderRadius: 33,
         }}
