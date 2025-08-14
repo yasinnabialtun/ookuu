@@ -106,7 +106,7 @@ const Hero: React.FC = () => {
       <Header onContactClick={openCalendlyPopup} />
 
       {/* Hero içerik */}
-      <div className="flex-1 flex items-center justify-center text-center px-4 relative z-10">
+      <div className="flex-1 flex items-center justify-center text-center px-4 relative z-10 ">
         <div className="max-w-7xl">
           <h1 className="font-light text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] xl:text-[55px] leading-tight mb-4">
             Bireyler ve Firmalar İçin <br />
