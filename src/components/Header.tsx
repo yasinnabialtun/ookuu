@@ -60,15 +60,20 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
 
   const handleContactClick = () => {
     setMenuOpen(false);
-    // Calendly popup aç
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: "https://calendly.com/yasinnabialtun/gelin-tanisalim?hide_event_type_details=1&hide_gdpr_banner=1&locale=tr",
-      });
-    } else {
-      // Calendly yüklenmemişse yeni sekmede aç
-      window.open("https://calendly.com/yasinnabialtun/gelin-tanisalim?hide_event_type_details=1&hide_gdpr_banner=1&locale=tr", "_blank");
-    }
+    
+    // Calendly'nin yüklenmesini bekle
+    const waitForCalendly = () => {
+      if (window.Calendly) {
+        window.Calendly.initPopupWidget({
+          url: "https://calendly.com/yasinnabialtun/gelin-tanisalim?hide_event_type_details=1&hide_gdpr_banner=1&locale=tr",
+        });
+      } else {
+        // Calendly henüz yüklenmemişse biraz bekle ve tekrar dene
+        setTimeout(waitForCalendly, 100);
+      }
+    };
+    
+    waitForCalendly();
   };
 
   const handleEducationMouseEnter = () => {
