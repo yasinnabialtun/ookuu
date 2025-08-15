@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
     script.onload = () => {
       if (window.Calendly) {
         window.Calendly.initBadgeWidget({
-          url: "https://calendly.com/yasinnabialtun/gelin-tanisalim?hide_event_type_details=1&hide_gdpr_banner=1",
+          url: "https://calendly.com/yasinnabialtun/gelin-tanisalim?hide_event_type_details=1&hide_gdpr_banner=1&locale=tr",
           text: "Randevu Oluştur",
           color: "#000000",
           textColor: "#ffffff",
@@ -70,7 +70,7 @@ const Hero: React.FC = () => {
   const openCalendlyPopup = () => {
     if (window.Calendly) {
       window.Calendly.initPopupWidget({
-        url: "https://calendly.com/yasinnabialtun/gelin-tanisalim?hide_event_type_details=1&hide_gdpr_banner=1",
+        url: "https://calendly.com/yasinnabialtun/gelin-tanisalim?hide_event_type_details=1&hide_gdpr_banner=1&locale=tr",
       });
       setCalendlyOpen(true);
     }

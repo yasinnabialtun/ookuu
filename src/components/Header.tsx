@@ -63,11 +63,11 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
     // Calendly popup aç
     if (window.Calendly) {
       window.Calendly.initPopupWidget({
-        url: "https://calendly.com/yasinnabialtun/gelin-tanisalim?hide_event_type_details=1&hide_gdpr_banner=1",
+        url: "https://calendly.com/yasinnabialtun/gelin-tanisalim?hide_event_type_details=1&hide_gdpr_banner=1&locale=tr",
       });
     } else {
       // Calendly yüklenmemişse yeni sekmede aç
-      window.open("https://calendly.com/yasinnabialtun/gelin-tanisalim?hide_event_type_details=1&hide_gdpr_banner=1", "_blank");
+      window.open("https://calendly.com/yasinnabialtun/gelin-tanisalim?hide_event_type_details=1&hide_gdpr_banner=1&locale=tr", "_blank");
     }
   };
 

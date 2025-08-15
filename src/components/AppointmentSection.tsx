@@ -41,7 +41,7 @@ const AppointmentSection: React.FC = () => {
           <div
             ref={calendlyRef}
             className="calendly-inline-widget rounded-3xl overflow-hidden w-full"
-            data-url="https://calendly.com/yasinnabialtun/gelin-tanisalim?hide_event_type_details=1&hide_gdpr_banner=1&hide_landing_page_details=1"
+            data-url="https://calendly.com/yasinnabialtun/gelin-tanisalim?hide_event_type_details=1&hide_gdpr_banner=1&hide_landing_page_details=1&locale=tr"
             role="region"
             aria-label="Calendly Appointment Scheduler"
             style={{ minWidth: '300px', height: '600px', width: '100%' }}
