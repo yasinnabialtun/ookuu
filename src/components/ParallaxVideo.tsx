@@ -6,13 +6,26 @@ const END_TIME = 325; // 03:25
 
 declare global {
   interface Window {
-    YT: any;
+    YT: {
+      Player: new (elementId: string, config: unknown) => {
+        getCurrentTime: () => number;
+        seekTo: (time: number) => void;
+        destroy?: () => void;
+      };
+      PlayerState: {
+        PLAYING: number;
+      };
+    };
     onYouTubeIframeAPIReady: () => void;
   }
 }
 
 const ParallaxVideo: React.FC = () => {
-  const playerRef = useRef<any>(null);
+  const playerRef = useRef<{
+    getCurrentTime: () => number;
+    seekTo: (time: number) => void;
+    destroy?: () => void;
+  } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const ticking = useRef(false);
 
@@ -21,10 +34,11 @@ const ParallaxVideo: React.FC = () => {
     if (!window.YT) {
       const tag = document.createElement("script");
       tag.src = "https://www.youtube.com/iframe_api";
+      tag.async = true;
       document.body.appendChild(tag);
     }
 
-    window.onYouTubeIframeAPIReady = () => {
+    const handleYouTubeAPIReady = () => {
       playerRef.current = new window.YT.Player("youtube-player", {
         videoId: VIDEO_ID,
         playerVars: {
@@ -40,8 +54,8 @@ const ParallaxVideo: React.FC = () => {
           showinfo: 0,
         },
         events: {
-          onReady: (event: any) => event.target.playVideo(),
-          onStateChange: (event: any) => {
+          onReady: (event: { target: { playVideo: () => void } }) => event.target.playVideo(),
+          onStateChange: (event: { data: number }) => {
             if (event.data === window.YT.PlayerState.PLAYING) {
               const checkTime = () => {
                 if (!playerRef.current) return;
@@ -56,6 +70,18 @@ const ParallaxVideo: React.FC = () => {
           },
         },
       });
+    };
+
+    window.onYouTubeIframeAPIReady = handleYouTubeAPIReady;
+
+    return () => {
+      try {
+        if (window.YT && playerRef.current) {
+          playerRef.current.destroy?.();
+        }
+      } catch (error) {
+        console.warn('YouTube player cleanup error:', error);
+      }
     };
   }, []);
 

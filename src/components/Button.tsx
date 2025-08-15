@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import ookuuLogo from "../assets/ookuulogopng.png";
+import ookuuLogo from "../assets/ookuulogo.png";
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;

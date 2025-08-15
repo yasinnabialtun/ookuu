@@ -6,9 +6,9 @@ const BentoGrid: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate(); 
 
-  function debounce<T extends (...args: any[]) => void>(func: T, wait: number) {
+  function debounce<T extends (...args: unknown[]) => void>(func: T, wait: number) {
     let timeout: ReturnType<typeof setTimeout>;
-    return function (this: any, ...args: Parameters<T>) {
+    return function (this: unknown, ...args: Parameters<T>) {
       clearTimeout(timeout);
       timeout = setTimeout(() => func.apply(this, args), wait);
     };
@@ -19,10 +19,11 @@ const BentoGrid: React.FC = () => {
     if (!cards) return;
 
     cards.forEach((card) => {
-      const updateGradient = debounce((e: MouseEvent) => {
+      const updateGradient = debounce((e: unknown) => {
+        const mouseEvent = e as MouseEvent;
         const rect = card.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        const x = ((mouseEvent.clientX - rect.left) / rect.width) * 100;
+        const y = ((mouseEvent.clientY - rect.top) / rect.height) * 100;
         card.style.setProperty("--mouse-x", `${x}%`);
         card.style.setProperty("--mouse-y", `${y}%`);
       }, 5);

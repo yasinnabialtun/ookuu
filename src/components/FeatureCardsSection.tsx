@@ -58,7 +58,7 @@ const FeaturedCardSection: React.FC = () => {
   return (
     <section
       ref={containerRef}
-      className="bg-black max-w-[1230px] mx-auto text-[#d1d1d1] font-inter relative overflow-x-hidden px-4 py-[clamp(20px,4vw,40px)] pb-4"
+      className="bg-black max-w-[1230px] mx-auto text-[#d1d1d1] font-inter relative overflow-x-hidden px-4 py-32 md:py-36 lg:py-40"
       aria-labelledby="features-heading"
     >
       <h2 id="features-heading" className="sr-only">Platform Özellikleri</h2>
