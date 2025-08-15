@@ -53,6 +53,20 @@
     <!-- Calendly Widget Script -->
     <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
     
+    <!-- Calendly Badge Widget -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script type="text/javascript">
+      window.onload = function() { 
+        Calendly.initBadgeWidget({ 
+          url: 'https://calendly.com/yasinnabialtun/gelin-tanisalim?hide_event_type_details=1&hide_gdpr_banner=1&locale=tr', 
+          text: 'Randevu Oluştur', 
+          color: '#000000', 
+          textColor: '#ffffff', 
+          branding: true 
+        }); 
+      }
+    </script>
+    
     <!-- Performance monitoring -->
     <script>
       // Performance monitoring
