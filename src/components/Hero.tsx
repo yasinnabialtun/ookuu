@@ -96,16 +96,16 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 bg-black bg-opacity-50 -z-0" />
 
       {/* Header bileşeni */}
-      <Header onContactClick={openCalendlyPopup} />
+      <Header />
 
       {/* Hero içerik */}
       <div className="flex-1 flex items-center justify-center text-center px-4 relative z-10">
         <div className="max-w-7xl">
-          <h1 className="font-light text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] xl:text-[55px] leading-tight mb-4">
-            Bireyler ve Firmalar İçin <br />
+          <h1 className="font-light text-[24px] sm:text-[32px] md:text-[44px] lg:text-[52px] xl:text-[55px] leading-tight mb-4 px-2">
+            Bireyler ve Firmalar İçin <br className="hidden sm:block" />
             Dijital Çağa Uyumlu Eğitimler
           </h1>
-          <p className="font-light text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] max-w-xl mx-auto mb-8 leading-relaxed">
+          <p className="font-light text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] max-w-xl mx-auto mb-8 leading-relaxed px-4">
             Yapay zeka, UI/UX ve kreatif tasarım dünyasına dair pratik bilgiler,
             gerçek örnekler ve senin dilinden anlatımlar.
           </p>

@@ -78,10 +78,10 @@ const AppointmentSection: React.FC = () => {
                 }}
               />
             </div>
-            <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white mb-4 leading-snug">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white mb-4 leading-snug px-2">
               Ataberk Soylu ile Ücretsiz 15 Dakikalık Danışmanlık Görüşmesi
             </h3>
-            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6 px-2">
               Tasarım yolculuğunda bir adım öne geçmek ister misin? Bu ücretsiz 15 dakikalık danışmanlık görüşmesinde; sana özel dijital strateji oluşturarak mevcut durumunu analiz ediyor, iş süreçlerine uygun yapay zeka destekli araçlarla verimliliğini artırıyor, markanı öne çıkaracak yaratıcı çözümler geliştiriyor, ölçülebilir sonuçlar sağlayan stratejiler sunuyor ve kullanıcı odaklı modern tasarım yaklaşımlarıyla fark yaratmanı sağlıyoruz.
             </p>
           </div>

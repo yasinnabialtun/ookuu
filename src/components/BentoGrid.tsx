@@ -147,7 +147,7 @@ const BentoGrid: React.FC = () => {
 
       </div>
 
-      <div className="scroll-indicator">← Kaydırarak keşfedin →</div>
+      <div className="scroll-indicator text-sm sm:text-base">← Kaydırarak keşfedin →</div>
     </div>
   );
 };

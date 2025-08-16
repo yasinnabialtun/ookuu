@@ -17,13 +17,13 @@ const AcademicThesis = () => {
         <div className="flex flex-col text-left order-2 md:order-1 pt-8 md:pt-0 min-h-full justify-start">
           <div>
             <h2
-              className="font-bold text-5xl sm:text-4xl md:text-4xl mb-8"
+              className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-8 px-2"
               style={{ letterSpacing: "0.09em", lineHeight: 1.3 }}
             >
               Türkiye'de Yapay Zeka ve Yaratıcılık Üzerine İlk Akademik Tez
             </h2>
 
-            <p className="text-base md:text-lg leading-[1.5] text-neutral-300 mb-5">
+            <p className="text-sm sm:text-base md:text-lg leading-[1.5] text-neutral-300 mb-5 px-2">
               OokuuAkademi'nin kurucusu tarafından yazılan bu tez, Türkiye'de yapay zeka ve yaratıcılık
               alanında yayınlanan ilk akademik çalışmalardan biridir. YÖK'te yayınlanmış olup, eğitimlerimizin temel
               kaynaklarından biridir. Bu akademik çalışma, yapay zeka teknolojilerinin yaratıcı süreçlere entegrasyonunu

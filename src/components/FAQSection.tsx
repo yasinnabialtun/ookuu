@@ -60,7 +60,7 @@ const FAQSection: React.FC = () => {
       style={{ fontFamily: "'Inter', sans-serif" }}
       aria-label="Sıkça Sorulan Sorular"
     >
-      <h2 className="text-6xl font-semibold mb-12 text-center text-white">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-12 text-center text-white px-4">
         Sıkça Sorulan Sorular
       </h2>
       <div className="space-y-6">
@@ -93,7 +93,7 @@ const FAQSection: React.FC = () => {
             >
               <h3
                 id={`faq-question-${i}`}
-                className="text-xl font-semibold flex justify-between items-center text-white"
+                className="text-lg sm:text-xl font-semibold flex justify-between items-center text-white"
               >
                 {item.question}
                 <span
@@ -113,7 +113,7 @@ const FAQSection: React.FC = () => {
                 }}
                 ref={(el) => (contentRefs.current[i] = el)}
               >
-                <p className="mt-4 text-white leading-relaxed">{item.answer}</p>
+                <p className="mt-4 text-white leading-relaxed text-sm sm:text-base">{item.answer}</p>
               </div>
             </div>
           );
