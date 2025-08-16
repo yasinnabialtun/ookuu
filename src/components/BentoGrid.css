@@ -8,7 +8,7 @@
 
 .bento-project-container {
   width: 100%;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0 0.5rem 0; /* Alt padding azaltıldı */
 }
 
 .bento-project-grid {
@@ -16,7 +16,7 @@
   grid-template-columns: 4fr 3fr 3fr;
   grid-template-rows: repeat(3, minmax(16rem, auto));
   gap: 1.25rem;
-  min-height: 50rem;
+  min-height: 40rem; /* Alt boşluk azaltıldı (eski 50rem) */
   min-width: 0; /* içeriklerin taşmasını önler */
 }
 
@@ -92,6 +92,73 @@
   min-width: 0; /* içeriklerin taşmasını önler */
 }
 
+/* Hover İkonu Stilleri */
+.bento-hover-icon {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c5ff21;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(197, 255, 33, 0.3);
+}
+
+.bento-project-card:hover .bento-hover-icon {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scroll İşareti Stilleri */
+.bento-scroll-indicator {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  opacity: 0;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: #c5ff21;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-shadow: 0 0 10px rgba(197, 255, 33, 0.5);
+}
+
+.bento-project-card:hover .bento-scroll-indicator {
+  opacity: 1;
+}
+
+.scroll-arrow {
+  animation: bounce 2s infinite;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
+
 .bento-project-cloud {
   grid-area: 1 / 1 / 3 / 2;
 }
@@ -136,7 +203,7 @@
 /* Mobil görünüm - Yatay kaydırma */
 @media (max-width: 768px) {
   .bento-project-container {
-    padding: 1rem;
+    padding: 1rem 1rem 0.5rem 1rem; /* Alt padding biraz azaltıldı */
     overflow-x: auto;
     /* Kaydırma çubuğunu gizle */
     scrollbar-width: none; /* Firefox */
@@ -176,23 +243,46 @@
     display: block;
     animation: fadeIn 2s ease-in-out 1s both;
   }
+
+  /* Mobilde hover ikonlarını her zaman göster */
+  .bento-hover-icon {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Mobilde scroll işaretlerini her zaman göster */
+  .bento-scroll-indicator {
+    opacity: 1;
+  }
 }
 
 /* Çok küçük ekranlar için */
 @media (max-width: 480px) {
   .bento-project-container {
-    padding: 0.75rem;
+    padding: 0.75rem 0.75rem 0.5rem 0.75rem; /* Alt padding azaltıldı */
   }
 
   .bento-project-grid {
     grid-template-columns: 320px 320px 200px;
     grid-template-rows: repeat(3, 180px);
     gap: 0.75rem;
-    min-width: 680px;
+    min-width: 300px;
   }
 
   .bento-project-card {
     padding: 0.75rem;
+  }
+
+  .bento-hover-icon {
+    width: 32px;
+    height: 32px;
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .bento-scroll-indicator {
+    bottom: 0.5rem;
+    font-size: 0.625rem;
   }
 }
 

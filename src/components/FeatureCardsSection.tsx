@@ -58,14 +58,14 @@ const FeaturedCardSection: React.FC = () => {
   return (
     <section
       ref={containerRef}
-      className="bg-black max-w-[1230px] mx-auto text-[#d1d1d1] font-inter relative overflow-x-hidden px-4 py-32 md:py-36 lg:py-40"
+      className="bg-black max-w-[1230px] mx-auto text-[#d1d1d1] font-inter relative overflow-x-hidden px-4 py-[clamp(60px,10vw,100px)]"
       aria-labelledby="features-heading"
     >
       <h2 id="features-heading" className="sr-only">Platform Özellikleri</h2>
       <ul className="card-container" aria-label="Platform özellikleri listesi">
         {features.map(({ icon, title, desc }, idx) => (
           <li key={idx} className="feature-card perspective-[1200px] relative max-w-[300px] mx-auto scroll-snap-start flex-shrink-0" aria-label={`${title} Kartı`}>
-            <article className="card-inner bg-black rounded-2xl pt-[clamp(30px,4vw,40px)] pb-[clamp(10px,1.5vw,18px)] text-center shadow-black/25 shadow-lg border-2 border-[#c5ff21] h-[240px] flex flex-col justify-start items-center text-[#d1d1d1] cursor-default select-none relative overflow-visible will-change-transform transition-transform duration-300 ease-in-out" style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}>
+            <article className="card-inner bg-black rounded-2xl py-[clamp(20px,3vw,30px)] text-center shadow-black/25 shadow-lg border-2 border-[#c5ff21] h-[240px] flex flex-col justify-start items-center text-[#d1d1d1] cursor-default select-none relative overflow-visible will-change-transform transition-transform duration-300 ease-in-out" style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}>
               <div className="mouse-light absolute inset-0 rounded-2xl opacity-0 pointer-events-none transition-opacity duration-300" style={{ background: 'radial-gradient(circle at center, rgba(197,255,33,0.15) 0%, transparent 60%)', zIndex: 0 }} />
               <i className={`${icon} text-[#c5ff21] relative z-10 select-none icon-pulse`} style={{ position: 'absolute', top: '-20px', fontSize: 'clamp(3rem, 6vw, 4rem)', transform: 'translateZ(50px)', transition: 'transform 0.3s ease' }} />
               <h3 className="text-[clamp(1.1rem,2vw,1.3rem)] font-extrabold text-[#f5f5f5] mt-6 mb-[clamp(6px,1vw,10px)] tracking-wide relative z-10 select-none px-2" style={{ transform: 'translateZ(20px)' }}>{title}</h3>
