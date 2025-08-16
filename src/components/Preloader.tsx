@@ -12,25 +12,26 @@ const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
   useEffect(() => {
     // Logo yükleme kontrolü
     const img = new Image();
-    img.onload = () => setLogoLoaded(true);
+    img.onload = () => {
+      setLogoLoaded(true);
+      // Logo yüklendikten hemen sonra animasyonu başlat
+      setTimeout(() => {
+        setAnimationPhase(1);
+      }, 200);
+    };
     img.src = '/images/ookuulogo.png';
 
     // Animasyon fazları
-    const phase1 = setTimeout(() => {
-      setAnimationPhase(1); // Breathing animasyonu başla
-    }, 800); // Logo yüklendikten sonra
-
     const phase2 = setTimeout(() => {
       setAnimationPhase(2); // Fade out başla
-    }, 3000); // 3 saniye breathing
+    }, 3200); // 3 saniye breathing
 
     const phase3 = setTimeout(() => {
       setIsVisible(false);
       setTimeout(onLoadingComplete, 500);
-    }, 3500); // Fade out tamamlandıktan sonra
+    }, 3700); // Fade out tamamlandıktan sonra
 
     return () => {
-      clearTimeout(phase1);
       clearTimeout(phase2);
       clearTimeout(phase3);
     };
@@ -43,19 +44,17 @@ const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
       <div className="text-center">
-        {/* Logo with breathing animation */}
-        <div className={`w-32 h-32 mx-auto relative flex items-center justify-center transition-all duration-1000 ${
-          animationPhase === 0 ? 'scale-75 opacity-0' : 
-          animationPhase === 1 ? 'scale-100 opacity-100' : 
-          'scale-110 opacity-0'
-        }`}>
+        {/* Logo container - sabit boyut */}
+        <div className="w-32 h-32 mx-auto relative flex items-center justify-center">
+          {/* Logo with smooth transitions */}
           <img 
             src="/images/ookuulogo.png" 
             alt="Ookuu Akademi" 
             className={`w-full h-full object-contain transition-all duration-1000 ${
-              animationPhase === 1 ? 'animate-breathing' : ''
+              animationPhase === 0 ? 'opacity-0 scale-75' : 
+              animationPhase === 1 ? 'opacity-100 scale-100 animate-breathing' : 
+              'opacity-0 scale-110'
             }`}
-            style={{ opacity: logoLoaded ? 1 : 0 }}
           />
         </div>
       </div>
