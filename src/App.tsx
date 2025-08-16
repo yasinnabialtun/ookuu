@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Bileşen importları
@@ -26,13 +26,38 @@ import Hakkimizda from "./Pages/Hakkimizda";
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  const handleContactClick = () => {
-    alert("İletişim butonuna tıklandı!");
-  };
+
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
   };
+
+  // Hash değişikliğini dinle
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#footer') {
+        const footerElement = document.getElementById('footer');
+        if (footerElement) {
+          setTimeout(() => {
+            footerElement.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }, 100);
+        }
+      }
+    };
+
+    // Sayfa yüklendiğinde hash kontrolü
+    handleHashChange();
+
+    // Hash değişikliklerini dinle
+    window.addEventListener('hashchange', handleHashChange);
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
 
   if (isLoading) {
     return <Preloader onLoadingComplete={handleLoadingComplete} />;
@@ -41,7 +66,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <div className="font-inter">
-        <Header onContactClick={handleContactClick} />
+        <Header />
         <main>
           <Routes>
             {/* Ana sayfa */}

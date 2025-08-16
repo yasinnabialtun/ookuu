@@ -3,14 +3,81 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ookuu Akademi</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://assets.calendly.com https://calendly.com https://www.youtube.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://calendly.com https://api.calendly.com https://*.calendly.com; frame-src https://calendly.com https://*.calendly.com https://www.youtube.com;" />
+    <title>ookuu Akademi - Dijital Dönüşümün Öncüsü</title>
+    <meta name="description" content="Ookuu Akademi ile dijital tasarım, yapay zeka ve dijital pazarlama alanlarında uzmanlaşın. Modern eğitim platformu ile kariyerinizi şekillendirin." />
+    <meta name="keywords" content="dijital tasarım, yapay zeka, dijital pazarlama, eğitim, online kurs, UI/UX, ChatGPT, SEO" />
+    <meta name="author" content="Ookuu Akademi" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ookuuakademi.com/" />
+    <meta property="og:title" content="ookuu Akademi - Dijital Dönüşümün Öncüsü" />
+    <meta property="og:description" content="Dijital tasarım, yapay zeka ve dijital pazarlama alanlarında uzmanlaşın." />
+    <meta property="og:image" content="/images/ookuulogo.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://ookuuakademi.com/" />
+    <meta property="twitter:title" content="ookuu Akademi - Dijital Dönüşümün Öncüsü" />
+    <meta property="twitter:description" content="Dijital tasarım, yapay zeka ve dijital pazarlama alanlarında uzmanlaşın." />
+    <meta property="twitter:image" content="/images/ookuulogo.png" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/images/ookuulogo.png?v=3" />
     <link rel="apple-touch-icon" href="/images/ookuulogo.png?v=3" />
     <link rel="shortcut icon" type="image/png" href="/images/ookuulogo.png?v=3" />
     <link rel="icon" type="image/x-icon" href="/images/ookuulogo.png?v=3" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://assets.calendly.com" />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/images/ookuulogo.png" as="image" />
+    <link rel="preload" href="/src/assets/ookuulogo.png" as="image" />
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//assets.calendly.com" />
+    <link rel="dns-prefetch" href="//images.unsplash.com" />
+    
+    <!-- Calendly CSS -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" media="print" onload="this.media='all'" />
+    
+    <!-- Critical CSS inline -->
+    <style>
+      /* Critical CSS for above-the-fold content */
+      body { margin: 0; font-family: 'Inter', sans-serif; background: #000; color: #fff; }
+      .preloader { position: fixed; inset: 0; z-index: 9999; background: #000; display: flex; align-items: center; justify-content: center; }
+      .preloader img { width: 120px; height: 120px; animation: fadeInOut 2s ease-in-out infinite; }
+      @keyframes fadeInOut { 0%, 100% { opacity: 0.3; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1); } }
+    </style>
   </head>
   <body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+      <img src="/images/ookuulogo.png" alt="Ookuu Akademi" />
+    </div>
+    
     <div id="root"></div>
+    
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Calendly JavaScript -->
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async defer></script>
+    
+    <!-- Remove preloader when app loads -->
+    <script>
+      window.addEventListener('load', function() {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+          preloader.style.opacity = '0';
+          setTimeout(() => preloader.remove(), 300);
+        }
+      });
+    </script>
   </body>
 </html>

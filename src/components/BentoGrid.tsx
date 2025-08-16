@@ -97,7 +97,11 @@ const BentoGrid: React.FC = () => {
           onClick={() => navigate("/YaraticiDijitalTasarim")}
           style={{ cursor: "pointer" }}
         >
-          <img src="images/image1.svg" alt="Yaratici Dijital Tasarım" />
+          <img 
+            src="images/image1.svg" 
+            alt="Yaratici Dijital Tasarım" 
+            loading="lazy"
+          />
           <div className="bento-project-description"></div>
         </div>
 
@@ -107,7 +111,11 @@ const BentoGrid: React.FC = () => {
           onClick={() => navigate("/YapayZekaTeknolojileri")}
           style={{ cursor: "pointer" }}
         >
-          <img src="images/image2.svg" alt="Yapay Zeka Teknolojileri" />
+          <img 
+            src="images/image2.svg" 
+            alt="Yapay Zeka Teknolojileri" 
+            loading="lazy"
+          />
           <div className="bento-project-description"></div>
         </div>
 
@@ -123,7 +131,11 @@ const BentoGrid: React.FC = () => {
           onClick={() => navigate("/DijitalPazarlamaStratejileri")}
           style={{ cursor: "pointer" }}
         >
-          <img src="images/image3.svg" alt="Dijital Pazarlama Stratejileri" />
+          <img 
+            src="images/image3.svg" 
+            alt="Dijital Pazarlama Stratejileri" 
+            loading="lazy"
+          />
           <div className="bento-project-description"></div>
         </div>
 

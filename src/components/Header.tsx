@@ -4,7 +4,7 @@ import { HiMenu, HiX, HiChevronDown } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
 interface HeaderProps {
-  onContactClick: () => void;
+  // Props removed as contact now goes to footer
 }
 
 const menuItems = [
@@ -21,11 +21,12 @@ const educationItems = [
   { name: "Dijital Pazarlama Stratejileri", path: "/DijitalPazarlamaStratejileri" },
 ];
 
-const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
+const Header: React.FC<HeaderProps> = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [educationDropdownOpen, setEducationDropdownOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [headerTransform, setHeaderTransform] = useState(0);
+  const [showCalendlyModal, setShowCalendlyModal] = useState(false);
 
   useEffect(() => {
     let ticking = false;
@@ -58,22 +59,87 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
     };
   }, []);
 
-  const handleContactClick = () => {
-    setMenuOpen(false);
-    
-    // Calendly'nin yüklenmesini bekle
-    const waitForCalendly = () => {
+  // Calendly'nin yüklenmesini kontrol et
+  useEffect(() => {
+    const checkCalendly = () => {
       if (window.Calendly) {
-        window.Calendly.initPopupWidget({
-          url: "https://calendly.com/yasinnabialtun/gelin-tanisalim?hide_event_type_details=1&hide_gdpr_banner=1&locale=tr",
-        });
+        console.log('Calendly yüklendi');
       } else {
-        // Calendly henüz yüklenmemişse biraz bekle ve tekrar dene
-        setTimeout(waitForCalendly, 100);
+        setTimeout(checkCalendly, 100);
       }
     };
     
-    waitForCalendly();
+    checkCalendly();
+  }, []);
+
+      // Calendly inline widget'ını yükle
+  useEffect(() => {
+    if (showCalendlyModal && window.Calendly) {
+      // Modal açıldığında Calendly widget'ını yeniden yükle
+      setTimeout(() => {
+        if (window.Calendly) {
+          // Önce mevcut widget'ı temizle
+          const existingWidget = document.querySelector('.calendly-inline-widget iframe');
+          if (existingWidget) {
+            existingWidget.remove();
+          }
+          
+          // Dil ayarını zorla
+          const url = new URL('https://calendly.com/yasinnabialtun/gelin-tanisalim');
+          url.searchParams.set('hide_event_type_details', '1');
+          url.searchParams.set('hide_gdpr_banner', '1');
+          url.searchParams.set('locale', 'tr_TR');
+          url.searchParams.set('text_color', 'ffffff');
+          url.searchParams.set('primary_color', '000000');
+          url.searchParams.set('utm_source', 'ookuuakademi');
+          url.searchParams.set('lang', 'tr');
+          
+          window.Calendly.initInlineWidget({
+            url: url.toString(),
+            parentElement: document.querySelector('.calendly-inline-widget'),
+            minWidth: '320px',
+            height: '100%'
+          });
+        }
+      }, 100);
+    }
+  }, [showCalendlyModal]);
+
+  // ESC tuşu ile modal'ı kapat
+  useEffect(() => {
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && showCalendlyModal) {
+        closeCalendlyModal();
+      }
+    };
+
+    if (showCalendlyModal) {
+      document.addEventListener('keydown', handleEscKey);
+      // Body scroll'u engelle
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscKey);
+      document.body.style.overflow = 'unset';
+    };
+  }, [showCalendlyModal]);
+
+  const handleContactClick = () => {
+    setMenuOpen(false);
+    
+    // Footer'a yönlendir
+    const footerElement = document.getElementById('footer');
+    if (footerElement) {
+      footerElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
+  const closeCalendlyModal = () => {
+    setShowCalendlyModal(false);
   };
 
   const handleEducationMouseEnter = () => {
@@ -192,7 +258,7 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
             type="button"
             onClick={handleContactClick}
           >
-            Bize Ulaşın
+                         Bize Ulaşın
           </button>
 
           {/* Mobile Hamburger */}
@@ -259,11 +325,42 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
           className="mt-auto bg-[#c5ff21] text-black font-semibold py-3 rounded-[33px] hover:bg-white hover:text-black transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
           type="button"
         >
-          Bize Ulaşın
-        </button>
-      </nav>
-    </header>
-  );
-};
+                     Bize Ulaşın
+                 </button>
+       </nav>
+
+               {/* Calendly Modal */}
+        {showCalendlyModal && (
+          <div className="fixed inset-0 z-[9999] flex items-start justify-center p-0 sm:p-4 pt-0 sm:pt-20">
+            {/* Blurred Background */}
+            <div 
+              className="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-lg"
+              onClick={closeCalendlyModal}
+            ></div>
+            
+                         {/* Modal Content */}
+             <div className="relative bg-black rounded-none sm:rounded-2xl shadow-2xl w-full max-w-5xl h-screen sm:h-[90vh] overflow-hidden">
+                             {/* Close Button */}
+               <button
+                 onClick={closeCalendlyModal}
+                 className="absolute top-4 right-4 z-10 bg-gray-800 rounded-full p-2 shadow-lg hover:bg-gray-700 transition-colors"
+                 type="button"
+                 aria-label="Kapat"
+               >
+                 <HiX size={24} className="text-white" />
+               </button>
+              
+                             {/* Calendly Inline Widget */}
+                                                                                                                                                                                                                                                               <div 
+                     className="calendly-inline-widget w-full h-full"
+                     data-url="https://calendly.com/yasinnabialtun/gelin-tanisalim?hide_event_type_details=1&hide_gdpr_banner=1&locale=tr_TR&text_color=ffffff&primary_color=000000&utm_source=ookuuakademi&lang=tr"
+                     style={{ minWidth: '320px', height: '100%' }}
+                   ></div>
+            </div>
+          </div>
+        )}
+     </header>
+   );
+ };
 
 export default Header;

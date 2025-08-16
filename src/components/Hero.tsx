@@ -1,22 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
 
-declare global {
-  interface Calendly {
-    initBadgeWidget(options: {
-      url: string;
-      text: string;
-      color: string;
-      textColor: string;
-      branding: boolean;
-    }): void;
-    initPopupWidget(options: { url: string }): void;
-    closePopupWidget(): void;
-  }
-  interface Window {
-    Calendly: Calendly;
-  }
-}
+
 
 const Hero: React.FC = () => {
   const [calendlyOpen, setCalendlyOpen] = useState(false);

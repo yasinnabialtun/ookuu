@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 
-interface BlogPost {
+interface BlogPostData {
   id: number;
   title: string;
   excerpt: string;
@@ -12,9 +12,10 @@ interface BlogPost {
   image: string;
   slug: string;
   author: string;
+  tags: string[];
 }
 
-const blogPosts: BlogPost[] = [
+const blogPosts: BlogPostData[] = [
   {
     id: 1,
     title: "Yapay Zeka ile Tasarım Süreçlerini Optimize Etme",
@@ -64,9 +65,158 @@ const blogPosts: BlogPost[] = [
     readTime: "5 dk",
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop&crop=center",
     slug: "yapay-zeka-tasarim-surecleri",
-    author: "Ookuu Akademi"
+    author: "Ookuu Akademi",
+    tags: ["Yapay Zeka", "Tasarım", "AI", "Midjourney", "Figma"]
   },
-  // Diğer blog yazıları için benzer yapılar...
+  {
+    id: 2,
+    title: "Freelancer Tasarımcılar için Dijital Pazarlama Stratejileri",
+    excerpt: "Bağımsız tasarımcıların portföylerini nasıl pazarlayacağını ve müşteri bulacağını öğrenin.",
+    content: `
+      <h2>Freelancer Tasarımcılar için Dijital Pazarlama Rehberi</h2>
+      <p>Freelancer tasarımcılar için dijital pazarlama, iş bulma ve müşteri edinme süreçlerinde kritik öneme sahiptir. Bu kapsamlı rehberde, bağımsız tasarımcıların dijital varlıklarını nasıl güçlendireceğini ve sürdürülebilir bir iş modeli oluşturacağını öğreneceksiniz.</p>
+
+      <h2>Kişisel Marka Oluşturma</h2>
+      <p>Freelancer tasarımcılar için kişisel marka oluşturma, uzun vadeli başarının temelidir. İşte etkili bir kişisel marka oluşturmanın adımları:</p>
+
+      <h3>1. Benzersiz Değer Önerisi</h3>
+      <p>Piyasada binlerce tasarımcı varken, sizi farklı kılan nedir? Bu soruyu yanıtlayarak benzersiz değer önerinizi belirleyin.</p>
+
+      <h3>2. Tutarlı Görsel Kimlik</h3>
+      <p>Logo, renk paleti, tipografi ve genel görsel diliniz tutarlı olmalıdır. Bu tutarlılık, güven oluşturur ve hatırlanabilirliği artırır.</p>
+
+      <h3>3. Uzmanlık Alanı Belirleme</h3>
+      <p>Genel bir tasarımcı olmak yerine, belirli bir alanda uzmanlaşın. Örneğin: UI/UX tasarımı, logo tasarımı, sosyal medya tasarımı gibi.</p>
+
+      <h2>Portföy Optimizasyonu</h2>
+      <p>Güçlü bir portföy, potansiyel müşterileri etkilemenin en etkili yoludur:</p>
+
+      <ul>
+        <li><strong>Kaliteli İçerik:</strong> En iyi çalışmalarınızı sergileyin</li>
+        <li><strong>Proje Hikayeleri:</strong> Her projenin arkasındaki süreci anlatın</li>
+        <li><strong>Sonuçlar:</strong> Çalışmalarınızın müşteriye sağladığı faydaları gösterin</li>
+        <li><strong>Güncel İçerik:</strong> Portföyünüzü düzenli olarak güncelleyin</li>
+      </ul>
+
+      <h2>Sosyal Medya Stratejileri</h2>
+      <p>Sosyal medya, freelancer tasarımcılar için mükemmel bir pazarlama platformudur:</p>
+
+      <h3>Instagram</h3>
+      <p>Görsel ağırlıklı içerikler için ideal. Çalışma süreçlerinizi, sonuçları ve günlük tasarım aktivitelerinizi paylaşın.</p>
+
+      <h3>LinkedIn</h3>
+      <p>Profesyonel ağınızı genişletmek ve B2B müşteriler bulmak için mükemmel platform.</p>
+
+      <h3>Behance/Dribbble</h3>
+      <p>Tasarım topluluklarında aktif olun, geri bildirim alın ve yeni fırsatlar keşfedin.</p>
+
+      <h2>İçerik Pazarlaması</h2>
+      <p>Değerli içerik üretmek, uzmanlığınızı gösterir ve organik trafik çeker:</p>
+
+      <ul>
+        <li>Blog yazıları yazın</li>
+        <li>Video içerikler oluşturun</li>
+        <li>Podcast'lerde konuk olun</li>
+        <li>Webinar'lar düzenleyin</li>
+      </ul>
+
+      <h2>Müşteri İlişkileri Yönetimi</h2>
+      <p>Mevcut müşterilerinizle güçlü ilişkiler kurmak, tekrarlayan işler ve referanslar sağlar.</p>
+
+      <h2>Sonuç</h2>
+      <p>Freelancer tasarımcılar için dijital pazarlama, sürekli öğrenme ve adaptasyon gerektiren bir süreçtir. Bu stratejileri uygulayarak, sürdürülebilir bir freelancer kariyeri oluşturabilirsiniz.</p>
+    `,
+    category: "Dijital Pazarlama",
+    date: "12 Aralık 2024",
+    readTime: "7 dk",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop&crop=center",
+    slug: "freelancer-dijital-pazarlama",
+    author: "Ookuu Akademi",
+    tags: ["Freelancer", "Dijital Pazarlama", "Kişisel Marka", "Portföy", "Sosyal Medya"]
+  },
+  {
+    id: 3,
+    title: "UI/UX Tasarımında Kullanıcı Deneyimi İlkeleri",
+    excerpt: "Kullanıcı odaklı tasarım yaklaşımları ve modern UI/UX trendleri hakkında detaylı rehber.",
+    content: `
+      <h2>Kullanıcı Deneyimi Tasarımının Temelleri</h2>
+      <p>UI/UX tasarımı, kullanıcıların dijital ürünlerle etkileşimini optimize etmek için kullanılan bilimsel ve yaratıcı bir süreçtir. Bu makalede, etkili kullanıcı deneyimi tasarımının temel ilkelerini ve modern uygulamalarını inceleyeceğiz.</p>
+
+      <h2>Temel UX İlkeleri</h2>
+      <p>Başarılı bir kullanıcı deneyimi tasarımı, aşağıdaki temel ilkelere dayanır:</p>
+
+      <h3>1. Kullanıcı Odaklı Tasarım</h3>
+      <p>Tasarım sürecinin merkezinde kullanıcı ihtiyaçları ve davranışları yer almalıdır. Kullanıcı araştırması, persona oluşturma ve kullanıcı testleri bu sürecin vazgeçilmez parçalarıdır.</p>
+
+      <h3>2. Basitlik ve Netlik</h3>
+      <p>Kullanıcılar karmaşık arayüzlerle karşılaştığında kafa karışıklığı yaşar. Basit, net ve anlaşılır tasarımlar her zaman daha etkilidir.</p>
+
+      <h3>3. Tutarlılık</h3>
+      <p>Tasarım elementleri, renkler, tipografi ve etkileşimler tutarlı olmalıdır. Bu tutarlılık, kullanıcı güveni oluşturur ve öğrenme eğrisini azaltır.</p>
+
+      <h3>4. Erişilebilirlik</h3>
+      <p>Tasarımlar tüm kullanıcılar için erişilebilir olmalıdır. Renk körlüğü, görme engeli veya motor beceri sorunları olan kullanıcılar da ürününüzü rahatlıkla kullanabilmelidir.</p>
+
+      <h2>Modern UI/UX Trendleri</h2>
+      <p>2024 yılında öne çıkan UI/UX tasarım trendleri:</p>
+
+      <h3>1. Glassmorphism</h3>
+      <p>Cam benzeri efektler ve bulanık arka planlar ile modern görünüm sağlar.</p>
+
+      <h3>2. Micro-interactions</h3>
+      <p>Küçük animasyonlar ve geçişler kullanıcı deneyimini zenginleştirir.</p>
+
+      <h3>3. Dark Mode</h3>
+      <p>Göz yorgunluğunu azaltan ve enerji tasarrufu sağlayan karanlık tema tercihi.</p>
+
+      <h3>4. Voice User Interface (VUI)</h3>
+      <p>Sesli komutlarla etkileşim kurma özelliği.</p>
+
+      <h2>Kullanıcı Araştırması Yöntemleri</h2>
+      <p>Etkili UX tasarımı için kullanıcı araştırması şarttır:</p>
+
+      <ul>
+        <li><strong>Anketler:</strong> Geniş kitlelerden veri toplama</li>
+        <li><strong>Görüşmeler:</strong> Derinlemesine kullanıcı ihtiyaçları analizi</li>
+        <li><strong>Kullanıcı Testleri:</strong> Prototiplerin gerçek kullanıcılarla test edilmesi</li>
+        <li><strong>A/B Testleri:</strong> Farklı tasarım versiyonlarının karşılaştırılması</li>
+      </ul>
+
+      <h2>Prototip Oluşturma</h2>
+      <p>Prototipler, tasarım fikirlerini test etmek için mükemmel araçlardır:</p>
+
+      <h3>Wireframe</h3>
+      <p>Sayfa düzeni ve içerik organizasyonu için basit çizimler.</p>
+
+      <h3>Mockup</h3>
+      <p>Görsel tasarım detaylarını içeren statik prototipler.</p>
+
+      <h3>Interactive Prototype</h3>
+      <p>Kullanıcı etkileşimlerini simüle eden interaktif prototipler.</p>
+
+      <h2>Kullanıcı Testi Süreci</h2>
+      <p>Kullanıcı testleri, tasarımın etkinliğini değerlendirmek için kritiktir:</p>
+
+      <ol>
+        <li>Test senaryoları hazırlayın</li>
+        <li>Hedef kullanıcıları belirleyin</li>
+        <li>Test ortamını hazırlayın</li>
+        <li>Testleri gerçekleştirin</li>
+        <li>Sonuçları analiz edin</li>
+        <li>İyileştirmeleri uygulayın</li>
+      </ol>
+
+      <h2>Sonuç</h2>
+      <p>UI/UX tasarımı, sürekli öğrenme ve iyileştirme gerektiren dinamik bir alandır. Kullanıcı odaklı yaklaşım ve modern trendleri takip ederek, kullanıcı dostu ve etkili dijital ürünler tasarlayabilirsiniz.</p>
+    `,
+    category: "Tasarım",
+    date: "10 Aralık 2024",
+    readTime: "8 dk",
+    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop&crop=center",
+    slug: "ui-ux-kullanici-deneyimi",
+    author: "Ookuu Akademi",
+    tags: ["UI/UX", "Kullanıcı Deneyimi", "Tasarım", "Prototip", "Kullanıcı Testi"]
+  }
 ];
 
 const BlogPost: React.FC = () => {
@@ -124,6 +274,20 @@ const BlogPost: React.FC = () => {
               <span>{post.readTime} okuma</span>
             </div>
           </div>
+          
+          {/* Tags */}
+          {post.tags && (
+            <div className="mt-4 flex flex-wrap gap-2">
+              {post.tags.map((tag, index) => (
+                <span 
+                  key={index}
+                  className="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs"
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
         </header>
 
         {/* Featured Image */}
@@ -132,6 +296,7 @@ const BlogPost: React.FC = () => {
             src={post.image} 
             alt={post.title}
             className="w-full h-64 md:h-80 object-cover rounded-2xl"
+            loading="lazy"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.style.display = 'none';
@@ -146,6 +311,35 @@ const BlogPost: React.FC = () => {
             className="text-gray-300 leading-relaxed"
           />
         </article>
+
+        {/* Related Articles */}
+        <div className="mt-12 pt-8 border-t border-gray-800">
+          <h3 className="text-2xl font-bold mb-6">İlgili Makaleler</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {blogPosts
+              .filter(p => p.id !== post.id && p.category === post.category)
+              .slice(0, 2)
+              .map((relatedPost) => (
+                <Link 
+                  key={relatedPost.id}
+                  to={`/blog/${relatedPost.slug}`}
+                  className="block bg-gray-900 rounded-xl p-6 hover:bg-gray-800 transition-colors"
+                >
+                  <h4 className="text-lg font-semibold mb-2 line-clamp-2">
+                    {relatedPost.title}
+                  </h4>
+                  <p className="text-gray-400 text-sm mb-3 line-clamp-2">
+                    {relatedPost.excerpt}
+                  </p>
+                  <div className="flex items-center text-xs text-gray-500">
+                    <span>{relatedPost.date}</span>
+                    <span className="mx-2">•</span>
+                    <span>{relatedPost.readTime}</span>
+                  </div>
+                </Link>
+              ))}
+          </div>
+        </div>
 
         {/* Share and Navigation */}
         <div className="mt-12 pt-8 border-t border-gray-800">

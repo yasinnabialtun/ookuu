@@ -4,9 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-*,
-*::before,
-*::after {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -18,35 +16,16 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  font-size: 16px;
 }
 
 body {
-  scroll-behavior: smooth;
   background-color: #000000;
-  /* Performance optimizations */
-  will-change: scroll-position;
-  contain: layout style paint;
 }
 
-/* Image optimizations */
 img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
   height: auto;
-  /* Performance optimizations */
-  will-change: transform;
-  contain: layout style paint;
-}
-
-/* Lazy loading for images */
-img[loading="lazy"] {
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
-img[loading="lazy"].loaded {
-  opacity: 1;
 }
 
 input, button, textarea, select {
@@ -66,49 +45,6 @@ a {
   cursor: pointer;
 }
 
-/* Hero section */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh; /* tam ekran yüksekliği */
-  overflow: hidden;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 16px; /* py-20 px-4 */
-  /* Performance optimizations */
-  will-change: transform;
-  contain: layout style paint;
-}
-
-/* Video arka plan sadece hero içinde */
-.hero video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -10;
-  pointer-events: none;
-  opacity: 1; /* opacity kesinlikle kaldırıldı */
-  /* Performance optimizations */
-  will-change: transform;
-  contain: layout style paint;
-}
-
-/* İçerik kutusu */
-.content {
-  position: relative;
-  z-index: 10;
-  max-width: 70rem;
-  width: 100%;
-  padding: 2.5rem;
-  border-radius: 12px;
-  text-align: center;
-  background-color: transparent !important; /* tamamen şeffaf */
-}
-
 /* Line clamp utilities */
 .line-clamp-2 {
   display: -webkit-box;
@@ -122,54 +58,4 @@ a {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-/* Performance optimizations */
-.performance-optimized {
-  will-change: transform;
-  contain: layout style paint;
-}
-
-/* Smooth scrolling for anchor links */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Reduce motion for users who prefer it */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* Critical CSS for above-the-fold content */
-.critical-content {
-  contain: layout style paint;
-  will-change: auto;
-}
-
-/* Optimize animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
-}
-
-/* Optimize hover effects */
-.hover-optimized {
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-  will-change: transform, box-shadow;
-}
-
-.hover-optimized:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }

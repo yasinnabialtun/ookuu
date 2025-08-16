@@ -28,7 +28,7 @@ const AppointmentSection: React.FC = () => {
         console.warn('Calendly script cleanup error:', error);
       }
     };
-  }, []);
+  }, [calendlyRef.current]);
 
   return (
     <section
