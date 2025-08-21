@@ -10,6 +10,7 @@ Modern React ve TypeScript ile geliştirilmiş, dijital dönüşüm odaklı eği
 - **SEO Dostu**: Meta tags, semantic HTML, performans optimizasyonları
 - **Preloader**: Kullanıcı deneyimini artıran yükleme ekranı
 - **Calendly Entegrasyonu**: Randevu sistemi entegrasyonu
+- **Shopier Ödeme Sistemi**: Güvenli e-ticaret entegrasyonu
 - **YouTube API**: Parallax video efektleri
 - **Modern UI/UX**: Gradient'lar, animasyonlar, hover efektleri
 
@@ -42,12 +43,22 @@ cd ookuuakademi
 npm install
 ```
 
-3. **Geliştirme sunucusunu başlatın**
+3. **Environment değişkenlerini ayarlayın**
+```bash
+cp env.example .env
+```
+`.env` dosyasını düzenleyerek Shopier API anahtarlarınızı ekleyin:
+```
+REACT_APP_SHOPIER_API_KEY=your_shopier_api_key_here
+REACT_APP_SHOPIER_SECRET_KEY=your_shopier_secret_key_here
+```
+
+4. **Geliştirme sunucusunu başlatın**
 ```bash
 npm run dev
 ```
 
-4. **Tarayıcıda açın**
+5. **Tarayıcıda açın**
 ```
 http://localhost:5173
 ```
@@ -89,14 +100,28 @@ ookuuakademi/
 │   │   ├── Header.tsx     # Navigasyon
 │   │   ├── Hero.tsx       # Ana sayfa hero
 │   │   ├── Preloader.tsx  # Yükleme ekranı
+│   │   ├── ProductCard.tsx # Ürün kartı
+│   │   ├── ShoppingCart.tsx # Alışveriş sepeti
+│   │   ├── CheckoutForm.tsx # Ödeme formu
 │   │   └── ...
 │   ├── Pages/             # Sayfa bileşenleri
+│   │   ├── Shop.tsx       # E-ticaret sayfası
+│   │   ├── PaymentSuccess.tsx # Ödeme başarılı
+│   │   ├── PaymentCancel.tsx # Ödeme iptal
+│   │   └── ...
+│   ├── services/          # Servisler
+│   │   └── shopierService.ts # Shopier ödeme servisi
+│   ├── types/             # TypeScript tipleri
+│   │   └── payment.ts     # Ödeme tipleri
+│   ├── data/              # Veri dosyaları
+│   │   └── products.ts    # Ürün verileri
 │   ├── assets/            # Proje varlıkları
 │   ├── App.tsx            # Ana uygulama
 │   └── main.tsx           # Giriş noktası
 ├── package.json           # Bağımlılıklar
 ├── vite.config.ts         # Vite konfigürasyonu
 ├── tailwind.config.js     # Tailwind konfigürasyonu
+├── env.example            # Environment örneği
 └── tsconfig.json          # TypeScript konfigürasyonu
 ```
 
@@ -136,6 +161,12 @@ ookuuakademi/
 - React Hooks rules
 - React Refresh support
 - Custom rules
+
+### Shopier Ödeme Sistemi
+- API entegrasyonu
+- Güvenli ödeme işlemleri
+- Callback URL'leri
+- Test ve production ortamları
 
 ## 📱 Responsive Tasarım
 
@@ -179,10 +210,39 @@ Bu proje özel kullanım için geliştirilmiştir.
 4. Push yapın (`git push origin feature/amazing-feature`)
 5. Pull Request oluşturun
 
+## 💳 Ödeme Sistemi
+
+### Shopier Entegrasyonu
+- **Güvenli Ödeme**: SSL şifreleme ile güvenli ödeme
+- **Çoklu Ödeme Yöntemi**: Kredi kartı, banka kartı, havale
+- **Otomatik Onay**: Anında ödeme onayı
+- **İade Sistemi**: 45 gün koşulsuz iade garantisi
+
+### Özellikler
+- Sepet yönetimi
+- Ürün filtreleme ve arama
+- Ödeme formu validasyonu
+- Başarılı/başarısız ödeme sayfaları
+- Local storage ile sepet koruma
+
+### Test Modu
+API anahtarlarınız yoksa sistem otomatik olarak test modunda çalışır:
+- Gerçek ödeme yapılmaz
+- Simüle edilmiş ödeme işlemleri
+- %90 başarı oranı ile test
+- Tüm özellikler test edilebilir
+
+### Gerçek Ödeme İçin
+1. Shopier hesabı oluşturun
+2. API anahtarlarınızı alın
+3. `.env` dosyasına anahtarları ekleyin
+4. Test ödemesi yapın
+
 ## 📞 İletişim
 
 - **Website**: [Ookuu Akademi](https://ookuuakademi.com)
 - **Email**: info@ookuuakademi.com
+- **Destek**: destek@ookuuakademi.com
 
 ---
 

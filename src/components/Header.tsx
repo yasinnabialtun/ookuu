@@ -19,6 +19,7 @@ const educationItems = [
   { name: "Yaratıcı Dijital Tasarım", path: "/YaraticiDijitalTasarim" },
   { name: "Yapay Zeka Teknolojileri", path: "/YapayZekaTeknolojileri" },
   { name: "Dijital Pazarlama Stratejileri", path: "/DijitalPazarlamaStratejileri" },
+  { name: "Tüm Eğitimler", path: "/shop" },
 ];
 
 const Header: React.FC<HeaderProps> = () => {

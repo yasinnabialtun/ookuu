@@ -1,10 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom"; 
 import "./BentoGrid.css";
+import { Product, CartItem } from "../types/payment";
+import { products } from "../data/products";
 
 const BentoGrid: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   function debounce<T extends (...args: unknown[]) => void>(func: T, wait: number) {
     let timeout: ReturnType<typeof setTimeout>;
@@ -81,6 +84,35 @@ const BentoGrid: React.FC = () => {
     };
   }, []);
 
+  // Local storage'dan sepet verilerini yükle
+  useEffect(() => {
+    const savedCart = localStorage.getItem('ookuu-cart');
+    if (savedCart) {
+      try {
+        setCartItems(JSON.parse(savedCart));
+      } catch (error) {
+        console.error('Sepet verileri yüklenemedi:', error);
+      }
+    }
+  }, []);
+
+  // Sepete ürün ekleme fonksiyonu
+  const addToCart = (product: Product) => {
+    const updatedCart = cartItems.find(item => item.product.id === product.id)
+      ? cartItems.map(item =>
+          item.product.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      : [...cartItems, { product, quantity: 1 }];
+    
+    setCartItems(updatedCart);
+    localStorage.setItem('ookuu-cart', JSON.stringify(updatedCart));
+    
+    // Kullanıcıya bildirim göster
+    alert(`${product.name} sepete eklendi!`);
+  };
+
   return (
     <div className="bento-project-container" ref={containerRef}>
       <div className="bento-project-grid">
@@ -93,30 +125,50 @@ const BentoGrid: React.FC = () => {
 
         {/* Görsel 1 - Tıklanabilir */}
         <div
-          className="bento-project-card bento-project-logo"
-          onClick={() => navigate("/YaraticiDijitalTasarim")}
+          className="bento-project-card bento-project-logo relative"
           style={{ cursor: "pointer" }}
         >
           <img 
             src="images/image1.svg" 
             alt="Yaratici Dijital Tasarım" 
             loading="lazy"
+            onClick={() => navigate("/YaraticiDijitalTasarim")}
           />
           <div className="bento-project-description"></div>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              const product = products.find(p => p.id === 'yaratici-dijital-tasarim');
+              if (product) addToCart(product);
+            }}
+            className="absolute bottom-4 right-4 bg-[#c5ff21] text-black px-3 py-1 rounded-lg text-sm font-bold hover:bg-white transition-colors"
+          >
+            Sepete Ekle
+          </button>
         </div>
 
         {/* Görsel 2 - Tıklanabilir */}
         <div
-          className="bento-project-card bento-project-device"
-          onClick={() => navigate("/YapayZekaTeknolojileri")}
+          className="bento-project-card bento-project-device relative"
           style={{ cursor: "pointer" }}
         >
           <img 
             src="images/image2.svg" 
             alt="Yapay Zeka Teknolojileri" 
             loading="lazy"
+            onClick={() => navigate("/YapayZekaTeknolojileri")}
           />
           <div className="bento-project-description"></div>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              const product = products.find(p => p.id === 'yapay-zeka-teknolojileri');
+              if (product) addToCart(product);
+            }}
+            className="absolute bottom-4 right-4 bg-[#c5ff21] text-black px-3 py-1 rounded-lg text-sm font-bold hover:bg-white transition-colors"
+          >
+            Sepete Ekle
+          </button>
         </div>
 
         {/* Video 2 - Tıklanamaz */}
@@ -127,16 +179,26 @@ const BentoGrid: React.FC = () => {
 
         {/* Görsel 3 - Tıklanabilir */}
         <div
-          className="bento-project-card bento-project-device-2"
-          onClick={() => navigate("/DijitalPazarlamaStratejileri")}
+          className="bento-project-card bento-project-device-2 relative"
           style={{ cursor: "pointer" }}
         >
           <img 
             src="images/image3.svg" 
             alt="Dijital Pazarlama Stratejileri" 
             loading="lazy"
+            onClick={() => navigate("/DijitalPazarlamaStratejileri")}
           />
           <div className="bento-project-description"></div>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              const product = products.find(p => p.id === 'dijital-pazarlama-stratejileri');
+              if (product) addToCart(product);
+            }}
+            className="absolute bottom-4 right-4 bg-[#c5ff21] text-black px-3 py-1 rounded-lg text-sm font-bold hover:bg-white transition-colors"
+          >
+            Sepete Ekle
+          </button>
         </div>
 
         {/* Video 3 - Tıklanamaz */}

@@ -22,11 +22,12 @@ import DijitalPazarlamaStratejileri from "./Pages/DijitalPazarlamaStratejileri";
 import Blog from "./Pages/Blog";
 import BlogPost from "./Pages/BlogPost";
 import Hakkimizda from "./Pages/Hakkimizda";
+import Shop from "./Pages/Shop";
+import PaymentSuccess from "./Pages/PaymentSuccess";
+import PaymentCancel from "./Pages/PaymentCancel";
 
 const App: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-
+  const [isLoading, setIsLoading] = useState(false); // Preloader'ı devre dışı bırak
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -97,6 +98,9 @@ const App: React.FC = () => {
              <Route path="/blog" element={<Blog />} />
              <Route path="/blog/:slug" element={<BlogPost />} />
              <Route path="/hakkimizda" element={<Hakkimizda />} />
+             <Route path="/shop" element={<Shop />} />
+             <Route path="/payment/success" element={<PaymentSuccess />} />
+             <Route path="/payment/cancel" element={<PaymentCancel />} />
           </Routes>
         </main>
         <ScrollToTopButton />
