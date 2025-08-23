@@ -1,30 +1,129 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+// TypeScript declaration for spline-viewer custom element
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'spline-viewer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
+        url: string;
+      }, HTMLElement>;
+    }
+  }
+}
+
 // Reusable Hero Section
-const HeroSection: React.FC = () => (
-  <section className="text-center mb-20 py-20 bg-gradient-to-b from-black to-gray-900">
-    <div className="max-w-5xl mx-auto px-6">
-      <span className="bg-[#c5ff21] text-black px-6 py-3 rounded-full text-md font-bold mb-6 inline-block">
-        UI/UX Tasarım Eğitimi 2025
-      </span>
-      <h1 className="text-5xl md:text-7xl font-extrabold mb-8 leading-tight text-white">
-        Geleceğin Dijital Tasarımlarını Şekillendirin: AI, AR ve Daha Fazlası
-      </h1>
-      <p className="text-xl text-gray-200 max-w-4xl mx-auto mb-10 leading-relaxed">
-        2025 trendleriyle kullanıcı merkezli tasarımda ustalaşın. AI entegrasyonu, AR/VR arayüzleri, erişilebilirlik ve gamification ile kariyerinizi zirveye taşıyın. Gerçek projelerle pratik yapın, global sertifika alın!
-      </p>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <Link to="/kayit" className="bg-[#c5ff21] text-black font-bold py-4 px-10 rounded-full hover:bg-white transition-all duration-300 transform hover:scale-105 shadow-lg">
-          Hemen Kayıt Olun
-        </Link>
-        <Link to="/demo" className="border-2 border-[#c5ff21] text-[#c5ff21] font-bold py-4 px-10 rounded-full hover:bg-[#c5ff21] hover:text-black transition-all duration-300 shadow-lg">
-          Ücretsiz Demo İzleyin
-        </Link>
+const HeroSection: React.FC = () => {
+  const [isSplineLoaded, setIsSplineLoaded] = useState(false);
+
+  useEffect(() => {
+    // Load Spline script
+    const loadSplineScript = () => {
+      if (document.querySelector('script[src*="spline-viewer.js"]')) {
+        setIsSplineLoaded(true);
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = 'https://unpkg.com/@splinetool/viewer@1.10.51/build/spline-viewer.js';
+      script.onload = () => {
+        console.log('Spline viewer script loaded');
+        setIsSplineLoaded(true);
+      };
+      script.onerror = () => {
+        console.error('Failed to load Spline viewer script');
+      };
+      document.head.appendChild(script);
+    };
+
+    loadSplineScript();
+  }, []);
+
+  return (
+    <section className="mb-20 py-20 bg-black relative h-screen overflow-hidden">
+      {/* 3D Background */}
+      <div className="absolute inset-0 z-0">
+        <spline-viewer 
+          url="https://prod.spline.design/BROrBzFkddRLt0sf/scene.splinecode"
+          style={{
+            width: '100%',
+            height: '100%',
+            border: 'none',
+            display: 'block',
+            transform: 'translateX(20%)',
+            overflow: 'hidden'
+          }}
+          className="lg:translate-x-[20%] translate-x-[10%]"
+        />
       </div>
-    </div>
-  </section>
-);
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        {/* Desktop Layout */}
+        <div className="hidden lg:grid grid-cols-2 gap-12 items-start pt-20">
+          {/* Left Column - Text Content */}
+          <div className="text-left">
+            <h1 className="text-4xl md:text-6xl font-extrabold mb-8 leading-tight text-white">
+              Geleceğin Dijital Tasarımlarını Şekillendirin
+            </h1>
+            <p className="text-xl text-gray-200 mb-10 leading-relaxed">
+              2025 trendleriyle kullanıcı merkezli tasarımda ustalaşın. AI entegrasyonu, AR/VR arayüzleri, erişilebilirlik ve gamification ile kariyerinizi zirveye taşıyın. Gerçek projelerle pratik yapın, global sertifika alın!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 items-center">
+              <Link to="/kayit" className="bg-[#c5ff21] text-black font-bold py-4 px-10 rounded-full hover:bg-white transition-all duration-300 transform hover:scale-105 shadow-lg text-center">
+                Hemen Kayıt Olun
+              </Link>
+              <Link to="/demo" className="border-2 border-[#c5ff21] text-[#c5ff21] font-bold py-4 px-10 rounded-full hover:bg-[#c5ff21] hover:text-black transition-all duration-300 shadow-lg text-center">
+                Ücretsiz Demo İzleyin
+              </Link>
+            </div>
+          </div>
+          
+          {/* Right Column - Empty for balance */}
+          <div className="relative overflow-visible h-[900px] w-full">
+            {/* Cover box to hide "Built with Spline" text on desktop */}
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-black z-20 pointer-events-none"></div>
+            {/* CTRL/C/V/Z text */}
+            <div className="absolute inset-0 flex items-center justify-end pr-0 z-30 transform -translate-y-10 translate-x-24">
+              <span className="text-[#c5ff21] text-sm font-semibold text-right">
+                CTRL/C/V/Z tuşlarına basın
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile/Tablet Layout */}
+        <div className="lg:hidden flex flex-col justify-start pt-2 h-screen">
+          {/* Text Content */}
+          <div className="text-center bg-black bg-opacity-60 backdrop-blur-sm rounded-2xl p-8 mx-0 mt-10 w-full">
+            <h1 className="text-3xl md:text-4xl font-extrabold mb-6 leading-tight text-white">
+              Geleceğin Dijital Tasarımlarını Şekillendirin
+            </h1>
+            <p className="text-lg text-gray-200 mb-8 leading-relaxed">
+              2025 trendleriyle kullanıcı merkezli tasarımda ustalaşın. AI entegrasyonu, AR/VR arayüzleri, erişilebilirlik ve gamification ile kariyerinizi zirveye taşıyın. Gerçek projelerle pratik yapın, global sertifika alın!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/kayit" className="bg-[#c5ff21] text-black font-bold py-4 px-10 rounded-full hover:bg-white transition-all duration-300 transform hover:scale-105 shadow-lg text-center">
+                Hemen Kayıt Olun
+              </Link>
+              <Link to="/demo" className="border-2 border-[#c5ff21] text-[#c5ff21] font-bold py-4 px-10 rounded-full hover:bg-[#c5ff21] hover:text-black transition-all duration-300 shadow-lg text-center">
+                Ücretsiz Demo İzleyin
+              </Link>
+            </div>
+            <div className="mt-4">
+              <span className="text-[#c5ff21] text-sm font-medium">
+                CTRL/C/V/Z tuşlarına basın
+              </span>
+            </div>
+          </div>
+          
+          {/* Cover box to hide "Built with Spline" text on mobile */}
+          <div className="absolute bottom-0 left-0 right-0 h-16 bg-black z-20 pointer-events-none lg:hidden"></div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 // Reusable Stat Card with Animation
 interface StatProps {

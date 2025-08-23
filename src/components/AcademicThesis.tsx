@@ -3,32 +3,23 @@ import React from "react";
 const AcademicThesis = () => {
   return (
     <section className="bg-black text-white px-4 py-20 md:py-24">
-      <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-        {/* Görsel */}
-        <div className="md:order-2">
-          <img
-            src="/images/yapayzekamakale.webp"
-            alt="Türkiye'de Yapay Zeka ve Yaratıcılık Üzerine Akademik Tez Görseli"
-            className="w-full h-auto rounded-[33px] object-cover"
-          />
-        </div>
-
-        {/* Metin ve buton */}
-        <div className="flex flex-col text-left order-2 md:order-1 pt-8 md:pt-0 min-h-full justify-start">
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        {/* Sol kolon - Metin ve buton */}
+        <div className="flex flex-col text-left order-1 h-full justify-between">
           <div>
             <h2
               className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-8 px-2"
-              style={{ letterSpacing: "0.09em", lineHeight: 1.3 }}
+              style={{ letterSpacing: "0.09em", lineHeight: 1.2 }}
             >
               Türkiye'de Yapay Zeka ve Yaratıcılık Üzerine İlk Akademik Tez
             </h2>
 
-            <p className="text-sm sm:text-base md:text-lg leading-[1.5] text-neutral-300 mb-5 px-2">
-              OokuuAkademi'nin kurucusu tarafından yazılan bu tez, Türkiye'de yapay zeka ve yaratıcılık
-              alanında yayınlanan ilk akademik çalışmalardan biridir. YÖK'te yayınlanmış olup, eğitimlerimizin temel
-              kaynaklarından biridir. Bu akademik çalışma, yapay zeka teknolojilerinin yaratıcı süreçlere entegrasyonunu
-              inceleyerek, dijital dönüşüm çağında tasarım ve yaratıcılık alanlarında yeni yaklaşımlar sunmaktadır.
-            </p>
+                         <p className="text-sm sm:text-base md:text-lg leading-[1.5] text-neutral-300 mb-3 px-2">
+               OokuuAkademi'nin kurucusu tarafından yazılan bu tez, Türkiye'de yapay zeka ve yaratıcılık
+               alanında yayınlanan ilk akademik çalışmalardan biridir. YÖK'te yayınlanmış olup, eğitimlerimizin temel
+               kaynaklarından biridir. Bu akademik çalışma, yapay zeka teknolojilerinin yaratıcı süreçlere entegrasyonunu
+               inceleyerek, dijital dönüşüm çağında tasarım ve yaratıcılık alanlarında yeni yaklaşımlar sunmaktadır.
+             </p>
           </div>
 
           <a
@@ -45,6 +36,17 @@ const AcademicThesis = () => {
               Makaleyi Görüntüle
             </button>
           </a>
+        </div>
+
+        {/* Sağ kolon - Görsel */}
+        <div className="flex flex-col items-start order-2 h-full justify-end">
+          <div className="rounded-3xl flex justify-center items-center overflow-hidden w-full h-[500px] md:h-[550px] bg-gray-800">
+            <img
+              src="/images/yapayzekamakale.webp"
+              alt="Türkiye'de Yapay Zeka ve Yaratıcılık Üzerine Akademik Tez Görseli"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
       </div>
     </section>
